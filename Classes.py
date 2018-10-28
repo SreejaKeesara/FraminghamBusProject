@@ -30,7 +30,7 @@ class Bus:
 
 class Student:
     def __init__(self, **kwargs):
-        self.id = 0
+        self.student_id = 0
         self.res_latitude = 0
         self.res_longitude = 0
         self.school = None
@@ -47,7 +47,7 @@ class Student:
 
 
 class School:
-    def __init__(self, name, longitude, latitude):
-        self.name = name
+    def __init__(self, school_id, longitude, latitude):
+        self.school_id = school_id
         self.longitude = longitude
         self.latitude = latitude
