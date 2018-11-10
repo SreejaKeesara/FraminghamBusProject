@@ -1,3 +1,7 @@
 xlrd
 xlwt
 googlemaps
+pandas
+datetime
+numpy
+matplotlib
