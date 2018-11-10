@@ -1,2 +1,6 @@
 xlrd
 xlwt
+pandas
+numpy
+datetime
+matplotlib
