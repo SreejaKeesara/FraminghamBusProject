@@ -1,0 +1,144 @@
+Analyzing routes for school  ALT
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{}
+
+
+Analyzing routes for school  BAR
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{'38': [(datetime.time(15, 36), 'HOLLIS ST & ANDREWS ST ', datetime.time(15, 37), '200 HOLLIS ST ', 2, 1)]}
+
+
+Analyzing routes for school  BRO
+Pickup Problem Stops
+{'M05': [(datetime.time(8, 35), 'UNION AV & WALNUT ST', datetime.time(8, 36), 'MAIN ST & WHEELER AV', 2, 1)]}
+
+Dropoff Problem Stops
+{'34': [(datetime.time(15, 41), '15 / 17 SECOND ST', datetime.time(15, 42), 'BEAVER ST & SECOND ST', 2, 1)]}
+
+
+Analyzing routes for school  CAM
+Pickup Problem Stops
+{'12': [(datetime.time(7, 27), 'COCHITUATE RD & FAIRBANKS RD', datetime.time(7, 28), 'ON WALSH ST @ COCHITUATE RD', 2, 1)]}
+
+Dropoff Problem Stops
+{}
+
+
+Analyzing routes for school  CHA
+Pickup Problem Stops
+{'41': [(datetime.time(7, 22), 'EDMANDS RD & GARVEY RD (UPPER)', datetime.time(7, 23), '588 EDMANDS RD', 2, 1)], '5': [(datetime.time(7, 40), 'WINTER ST & RANSOM RD', datetime.time(7, 43), 'DR H CUSHING WY & WINTER ST', 4, 3)]}
+
+Dropoff Problem Stops
+{'30': [(datetime.time(16, 9), 'WINTER ST & RANSOM RD', datetime.time(16, 11), 'DR H CUSHING WY & WINTER ST', 4, 2)], '2': [(datetime.time(16, 10), 'SOUTH ST & ARLINGTON ST', datetime.time(16, 11), 'WAUSHAKUM ST & ARLINGTON ST', 2, 1)]}
+
+
+Analyzing routes for school  DUN
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{}
+
+
+Analyzing routes for school  FHS
+Pickup Problem Stops
+{'23': [(datetime.time(6, 33), 'CARTER DR & BENT HILL DR', datetime.time(6, 35), 'CARTER DR & WOODSTOCK DR', 3, 2)], '4': [(datetime.time(6, 51), 'ON ANGELA RD & ELM ST ', datetime.time(6, 52), 'ON ELM ST & POTTER RD (EAST) ', 2, 1)], '19': [(datetime.time(6, 31), 'PLEASANT ST @ BOSWORTH RD', datetime.time(6, 33), '980 PLEASANT ST (CROSSES IN AM)', 3, 2), (datetime.time(6, 33), '980 PLEASANT ST (CROSSES IN AM)', datetime.time(6, 35), '7 PINE HILL RD', 3, 2)]}
+
+Dropoff Problem Stops
+{'28': [(datetime.time(14, 19), 'HOLLIS ST & HAVEN ST', datetime.time(14, 20), 'HOLLIS ST @ GORDON ST', 2, 1)]}
+
+
+Analyzing routes for school  FUL
+Pickup Problem Stops
+{'5': [(datetime.time(7, 40), 'WINTER ST & RANSOM RD', datetime.time(7, 43), 'DR H CUSHING WY & WINTER ST ', 4, 3)]}
+
+Dropoff Problem Stops
+{}
+
+
+Analyzing routes for school  HEM
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{}
+
+
+Analyzing routes for school  JUN
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{}
+
+
+Analyzing routes for school  KNG
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{'45': [(datetime.time(15, 38), 'INDIAN HEAD RD & LOCKLAND AV ', datetime.time(15, 39), 'SUNSET DR & DANA RD', 2, 1)]}
+
+
+Analyzing routes for school  MAR
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{}
+
+
+Analyzing routes for school  MCC
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{}
+
+
+Analyzing routes for school  POT
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{}
+
+
+Analyzing routes for school  STA
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{'M12': [(datetime.time(15, 27), 'ON LOWTHER RD & CENTRAL ST - UNTIL 3/1/18', datetime.time(15, 31), 'COPELAND RD & CODY RD ', 5, 4)]}
+
+
+Analyzing routes for school  STB
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{}
+
+
+Analyzing routes for school  WAL
+Pickup Problem Stops
+{'M03': [(datetime.time(7, 35), 'EDMANDS RD & BARNBRIDGE CIR (ENTRANCE)', datetime.time(7, 36), '70 EDMANDS RD  W/C', 4, 1)]}
+
+Dropoff Problem Stops
+{'38': [(datetime.time(14, 41), 'ON WALNUT ST & MAIN ST', datetime.time(14, 42), 'UNION AV & WALNUT ST', 2, 1)]}
+
+
+Analyzing routes for school  WIL
+Pickup Problem Stops
+{}
+
+Dropoff Problem Stops
+{}
+
+Process finished with exit code 0
