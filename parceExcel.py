@@ -13,9 +13,18 @@ import os
 import googlemaps
 import xlwt
 from Classes import Bus, School, Student
+from openpyxl import Workbook
 
+TEST_BUS_DICT = {}
+TEST_SCHOOL_DICT = {}
+TEST_STUDENT_DICT = {}
 
-
+# workbook = xlrd.open_workbook('2016-2017 Framingham Bus Data.xlsx')
+# worksheet = workbook.sheet_by_name('qmf_temp')
+#
+# studentResidentialAddresses = worksheet.col_values(2)
+# bus = Bus(bus_id=5, capacity=60)
+# print(bus.latitude)
 
 KEY = os.getenv("GOOGLE_MAPS_API_KEY")
 gmaps = googlemaps.Client(key= KEY)
@@ -86,7 +95,3 @@ def create_current_routes():
 
 
 create_current_routes()
-
-
-
-
