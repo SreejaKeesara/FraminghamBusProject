@@ -8,8 +8,6 @@ from gmplot import gmplot
 import numpy as np
 import matplotlib.pyplot as plt
 
-#key = os.getenv('GOOGLE_MAPS_API_KEY')
-
 # pickup histograms with earliest stops highlighted
 def get_coordinates(address):
     gmaps = googlemaps.Client(key="AIzaSyCdchjzjhJmNJeycoTjdcGprfmiaFhlhR4")
@@ -36,7 +34,7 @@ def get_coordinates(address):
 
 
 def school_histogram(filename):
-    #global key
+    key = os.getenv('GOOGLE_MAPS_API_KEY')
     df = pd.read_excel(filename)
 
     df.columns = ['school', 'grade', 'res_addr', 'pickup_time', 'pickup_bus', 'pickup_location', 'pickup_stop',
@@ -82,7 +80,7 @@ def school_histogram(filename):
 
     for y in school_dict:
         gmap = gmplot.GoogleMapPlotter(42.2981, -71.4361, 15)
-        gmap.apikey = "AIzaSyCdchjzjhJmNJeycoTjdcGprfmiaFhlhR4"
+        gmap.apikey = key
 
         if break_counter < 100:
             break_counter += 1
