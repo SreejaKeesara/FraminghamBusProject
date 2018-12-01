@@ -12,6 +12,7 @@ import pandas as pd
 from datetime import datetime, timedelta
 import googlemaps
 import os
+import xlsxwriter
 
 
 def create_routes(filename, school):
@@ -128,6 +129,58 @@ def analyze_bus_route(bus_route_dict):
     return problematic_stops
 
 
+def write_routes_to_excel(worksheet, routes):
+    row = 0
+    # col = 0
+    for bus in routes.keys():
+        worksheet.write(row, 0, 'Bus ' + bus)
+        row += 1
+
+        stops = sorted(routes[bus].keys())
+        for stop in stops:
+            worksheet.write(row, 0, stop.strftime("%H:%M"))
+            worksheet.write(row, 1, routes[bus][stop][0])
+            worksheet.write(row, 2, routes[bus][stop][1])
+            row += 1
+
+        row += 1
+
+
+def write_problem_stops_to_excel(worksheet, problem_stops):
+    row = 0
+    for bus in problem_stops.keys():
+        worksheet.write(row, 0, 'Bus ' + bus)
+        row += 1
+
+        problems = problem_stops[bus]
+        for problem in problems:
+            worksheet.write(row, 0, problem[0].strftime("%H:%M"))
+            worksheet.write(row, 1, problem[1][0])
+            worksheet.write(row, 2, problem[1][1])
+            worksheet.write(row, 3, problem[2].strftime("%H:%M"))
+            worksheet.write(row, 4, problem[3][0])
+            worksheet.write(row, 5, problem[3][1])
+            worksheet.write(row, 6, problem[5])
+            worksheet.write(row, 7, problem[4])
+            row += 1
+
+        row += 1
+
+
+def write_data_to_excel(routes_workbook, problematic_stops_workbook):
+    routes_worksheet_pickup = routes_workbook.add_worksheet(school + " pickup")
+    routes_worksheet_dropoff = routes_workbook.add_worksheet(school + " dropoff")
+
+    problematic_stops_worksheet_pickup = problematic_stops_workbook.add_worksheet(school + " pickup")
+    problematic_stops_worksheet_dropoff = problematic_stops_workbook.add_worksheet(school + " dropoff")
+
+    write_routes_to_excel(routes_worksheet_pickup, pickup)
+    write_routes_to_excel(routes_worksheet_dropoff, dropoff)
+
+    write_problem_stops_to_excel(problematic_stops_worksheet_pickup, problem_pickup_stops_by_bus)
+    write_problem_stops_to_excel(problematic_stops_worksheet_dropoff, problem_dropoff_stops_by_bus)
+
+
 school_time = {"ALT": ["09:20", "09:30", "00:00", "#afd073"],
                    "BAR": ["08:50", "09:05", "15:05", "#fca8e0"],
                    "BRO": ["09:00", "09:15", "15:15", "#8a266c"],
@@ -148,6 +201,9 @@ school_time = {"ALT": ["09:20", "09:30", "00:00", "#afd073"],
                    "WIL": ["08:50", "09:05", "15:05", "#09c904"]
                    }
 
+routes_workbook = xlsxwriter.Workbook('Routes.xlsx')
+problematic_stops_workbook = xlsxwriter.Workbook('Problematic Stops.xlsx')
+
 for school in school_time.keys():
     print("\n\nAnalyzing routes for school ", school)
     pickup, dropoff = create_routes('2017-2018 Framingham Bus Data.xlsx', school)
@@ -155,7 +211,6 @@ for school in school_time.keys():
     print("Pickup Problem Stops")
     problem_pickup_stops_by_bus = {}
     for bus_route in pickup.keys():
-        # print("bus ", bus_route)
         problematic_stops = analyze_bus_route(pickup[bus_route])
         if problematic_stops != []:
             problem_pickup_stops_by_bus[bus_route] = problematic_stops
@@ -165,23 +220,14 @@ for school in school_time.keys():
     print("\nDropoff Problem Stops")
     problem_dropoff_stops_by_bus = {}
     for bus_route in dropoff.keys():
-        # print("bus ", bus_route)
         problematic_stops = analyze_bus_route(dropoff[bus_route])
         if problematic_stops != []:
             problem_dropoff_stops_by_bus[bus_route] = problematic_stops
 
     print(problem_dropoff_stops_by_bus)
 
-# key = os.getenv('GOOGLE_MAPS_API_KEY')
-# gmaps = googlemaps.Client(key=key)
+    write_data_to_excel(routes_workbook, problematic_stops_workbook)
 
-# # Geocoding an address
-# geocode_result = gmaps.geocode('Winthrop St & Bethany Rd, Framingham, MA')
-# print(geocode_result)
 
-# now = datetime.now()
-# directions_result = gmaps.directions("Sydney Town Hall",
-#                                      "Parramatta, NSW",
-#                                      mode="transit",
-#                                      departure_time=now)
-# print(directions_result)
+routes_workbook.close()
+problematic_stops_workbook.close()
