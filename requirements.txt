@@ -1,3 +1,8 @@
-xlrd
-pandas
+xlwt
 googlemaps
+pandas
+datetime
+numpy
+matplotlib
+gmplot
+gmaps
