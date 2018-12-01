@@ -5,3 +5,5 @@ pandas
 datetime
 numpy
 matplotlib
+gmplot
+gmaps
