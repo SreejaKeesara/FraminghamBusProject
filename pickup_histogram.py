@@ -10,7 +10,8 @@ import matplotlib.pyplot as plt
 
 # pickup histograms with earliest stops highlighted
 def get_coordinates(address):
-    gmaps = googlemaps.Client(key="AIzaSyCdchjzjhJmNJeycoTjdcGprfmiaFhlhR4")
+    key = os.getenv('GOOGLE_MAPS_API_KEY')
+    gmaps = googlemaps.Client(key=key)
 
     # Geocoding an address
     try:
