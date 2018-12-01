@@ -35,7 +35,9 @@ def create_routes(filename, school):
             datetimeTime = datetime.strptime(x, '%I:%M %p').time()
             if datetimeTime not in stop_dict.keys():
                 address = students_to_pickup[students_to_pickup['pickup_time'] == x].iloc[0]['pickup_stop_desc']
-                stop_dict[datetimeTime] = address.replace('*', '')
+                stop_dict[datetimeTime] = [address.replace('*', ''), 1]
+            else:
+                stop_dict[datetimeTime][1] += 1
         # print(stop_dict)
         pickup_routes_by_bus[bus] = stop_dict
 
@@ -48,7 +50,9 @@ def create_routes(filename, school):
             datetimeTime = datetime.strptime(x, '%I:%M %p').time()
             if datetimeTime not in stop_dict.keys():
                 address = students_to_dropoff[students_to_dropoff['dropoff_time'] == x].iloc[0]['dropoff_stop_desc']
-                stop_dict[datetimeTime] = address.replace('*', '')
+                stop_dict[datetimeTime] = [address.replace('*', ''), 1]
+            else:
+                stop_dict[datetimeTime][1] += 1
         # print(stop_dict)
         dropoff_routes_by_bus[bus] = stop_dict
 
@@ -60,7 +64,7 @@ def get_coordinates(address):
     gmaps = googlemaps.Client(key=key)
 
     # Geocoding an address
-    geocode_result = gmaps.geocode(address + ', Framingham, MA')
+    geocode_result = gmaps.geocode(address[0] + ', Framingham, MA')
     try:
         lat = geocode_result[0]['geometry']['location']['lat']
         long = geocode_result[0]['geometry']['location']['lng']
@@ -83,6 +87,7 @@ def get_distance(stop1_lat, stop1_long, stop2_lat, stop2_long, departure_time):
 
 
 def time_to_travel(stop1, stop2, departure_time):
+    # print("STOP1 =", stop1, "STOP2 =", stop2)
     stop1_lat, stop1_long = get_coordinates(stop1)
     stop2_lat, stop2_long = get_coordinates(stop2)
 
@@ -110,7 +115,12 @@ def analyze_bus_route(bus_route_dict):
         if stop != number_of_stops - 1:
             # print("stop ", stops_in_order[stop])
             # print("next stop ", stops_in_order[stop + 1])
-            travel_time = time_to_travel(bus_route_dict[stops_in_order[stop]], bus_route_dict[stops_in_order[stop + 1]], stops_in_order[stop])
+            # print(bus_route_dict[stops_in_order[stop]])
+            travel_time = time_to_travel(bus_route_dict[stops_in_order[stop]][0], bus_route_dict[stops_in_order[stop + 1]][0], stops_in_order[stop])
+            num_students = (bus_route_dict[stops_in_order[stop]][1])/3
+            student_times = (num_students * 15.0) // 60
+            if travel_time != None:
+                travel_time += student_times
             time_between_stops = get_time_between_stops(stops_in_order[stop], stops_in_order[stop+1])
             if travel_time != None and travel_time > time_between_stops:
                 # print("problematic - time given to travel between ", bus_route_dict[stops_in_order[stop]], " and ", bus_route_dict[stops_in_order[stop + 1]] + " is ", time_between_stops, " but it takes longer - ", travel_time)
